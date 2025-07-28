@@ -5,7 +5,7 @@ import { resolve } from 'path';
 /**
  * tsconfig의 paths 설정을 로드하고 등록합니다.
  */
-export function registerTsconfigPaths(): (() => void) | undefined {
+export function registerTsconfigPaths(): (() => void) | null {
   try {
     const tsconfigPath = resolve(process.cwd(), 'tsconfig.paths.json');
     const tsconfig = JSON.parse(readFileSync(tsconfigPath, 'utf8'));
@@ -26,7 +26,7 @@ export function registerTsconfigPaths(): (() => void) | undefined {
     return cleanup;
   } catch (error) {
     console.warn('Failed to register tsconfig paths:', error);
-    return undefined;
+    return null;
   }
 }
 
