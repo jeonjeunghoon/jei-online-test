@@ -1,5 +1,6 @@
 import type { Page } from 'playwright';
 import type { Config, NavigationService, Logger } from '@/types/index.js';
+import { delay } from '@/utils/delay.js';
 
 export class NavigationServiceImpl implements NavigationService {
   constructor(
@@ -26,6 +27,7 @@ export class NavigationServiceImpl implements NavigationService {
 
     if (exists > 0) {
       await element.click();
+      await delay(this.config.DELAYS.AFTER_CLICK);
       await this.logger.log(page, `${context} 요소 클릭 완료`);
       return true;
     }
@@ -36,6 +38,7 @@ export class NavigationServiceImpl implements NavigationService {
 
   async clickTextButton(page: Page, text: string) {
     await page.getByText(text, { exact: false }).click();
+    await delay(this.config.DELAYS.AFTER_CLICK);
   }
 
   async navigateToUrl(page: Page, url: string) {

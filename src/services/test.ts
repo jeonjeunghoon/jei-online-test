@@ -22,6 +22,7 @@ export class TestServiceImpl implements TestService {
 
     const button = page.locator('main button').first();
     await button.click();
+    await delay(this.config.DELAYS.AFTER_CLICK);
 
     await this.navigation.clickTextButton(page, '확인');
     await this.navigation.clickTextButton(page, '시작하기');
@@ -59,6 +60,7 @@ export class TestServiceImpl implements TestService {
     if (items.length > 0) {
       const randomIndex = Math.floor(Math.random() * items.length);
       await items[randomIndex]?.click();
+      await delay(this.config.DELAYS.AFTER_CLICK);
     }
   }
 
@@ -69,6 +71,7 @@ export class TestServiceImpl implements TestService {
     while (true) {
       try {
         await buttons.nth(1).click({ timeout: this.config.TIMEOUTS.CLICK });
+        await delay(this.config.DELAYS.AFTER_CLICK);
         clickCount++;
         await this.logger.log(page, `${subject} 버튼 클릭 ${clickCount}번째`);
         await delay(this.config.DELAYS.CLICK_INTERVAL);
@@ -115,6 +118,7 @@ export class TestServiceImpl implements TestService {
 
         if (isVisible && isEnabled) {
           await button.click();
+          await delay(this.config.DELAYS.AFTER_CLICK);
           clickCount++;
           await delay(this.config.DELAYS.NAVIGATION);
         } else {

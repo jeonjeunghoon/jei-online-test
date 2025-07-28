@@ -27,6 +27,7 @@ export class JeiService {
 
         if (cardExists > 0) {
           await cardButton.click();
+          await delay(this.config.DELAYS.AFTER_CLICK);
           await this.logger.log(
             page,
             `재능스스로 카드 클릭 완료 (${method}로 찾음)`
@@ -106,6 +107,7 @@ export class JeiService {
 
         if (resetExists > 0) {
           await resetButton.click();
+          await delay(this.config.DELAYS.AFTER_CLICK);
           await this.logger.log(page, '리셋 버튼 클릭 완료 (count > 0)');
           return;
         }

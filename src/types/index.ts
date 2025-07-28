@@ -13,6 +13,7 @@ export interface Config {
     CLICK_INTERVAL: number;
     NAVIGATION: number;
     PAGE_LOAD: number;
+    AFTER_CLICK: number;
   };
   URLS: {
     MAIN: string;

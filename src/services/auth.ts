@@ -5,6 +5,7 @@ import type {
   NavigationService,
   Logger,
 } from '@/types/index.js';
+import { delay } from '@/utils/delay.js';
 
 export class AuthServiceImpl implements AuthService {
   constructor(
@@ -18,6 +19,7 @@ export class AuthServiceImpl implements AuthService {
 
     const buttons = page.locator('[class*="cursor-pointer"]');
     await buttons.nth(0).click();
+    await delay(this.config.DELAYS.AFTER_CLICK);
 
     await this.navigation.clickTextButton(page, '휴대폰 번호로 로그인');
     await this.navigation.clickTextButton(page, '확인');
@@ -34,6 +36,7 @@ export class AuthServiceImpl implements AuthService {
     );
     if (await confirmButton.isVisible()) {
       await confirmButton.click();
+      await delay(this.config.DELAYS.AFTER_CLICK);
     }
 
     await this.navigation.clickTextButton(page, '개인정보 수집 및 이용 동의');

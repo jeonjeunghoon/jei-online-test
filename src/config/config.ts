@@ -13,6 +13,7 @@ export const config: Config = {
     CLICK_INTERVAL: 500,
     NAVIGATION: 1000,
     PAGE_LOAD: 3000,
+    AFTER_CLICK: 500,
   },
   URLS: {
     MAIN: 'https://jindan.jei.com/',
