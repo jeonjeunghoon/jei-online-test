@@ -2,7 +2,7 @@ import type { Page } from 'playwright';
 import type { Logger } from '@/types/index.js';
 
 export class LoggerService implements Logger {
-  async log(page: Page, message: string, isBrowserLog = true): Promise<void> {
+  async log(page: Page, message: string, isBrowserLog = true) {
     // eslint-disable-next-line no-console
     console.log(message);
     if (isBrowserLog) {
@@ -13,7 +13,7 @@ export class LoggerService implements Logger {
     }
   }
 
-  error(message: string, error?: Error): void {
+  error(message: string, error?: Error) {
     // eslint-disable-next-line no-console
     console.error(message, error);
   }

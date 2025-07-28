@@ -14,11 +14,7 @@ export class TestServiceImpl implements TestService {
     private readonly logger: Logger
   ) {}
 
-  async testSubject(
-    page: Page,
-    subject: string,
-    continueUntilEnd = false
-  ): Promise<void> {
+  async testSubject(page: Page, subject: string, continueUntilEnd = false) {
     await this.navigation.clickTextButton(page, subject);
     await this.navigation.clickTextButton(page, '선택');
     await this.selectRandomListItem(page);
@@ -36,7 +32,7 @@ export class TestServiceImpl implements TestService {
     await this.submitTest(page, continueUntilEnd);
   }
 
-  async submitTest(page: Page, continueUntilEnd = false): Promise<void> {
+  async submitTest(page: Page, continueUntilEnd = false) {
     await this.navigation.clickTextButton(page, '제출 전 확인하기');
     await this.navigation.clickTextButton(page, '전체 보기');
     await this.navigation.clickTextButton(page, '제출하기');
@@ -46,7 +42,7 @@ export class TestServiceImpl implements TestService {
     }
   }
 
-  async retryTest(page: Page): Promise<void> {
+  async retryTest(page: Page) {
     await this.logger.log(page, '=== 다시하기 테스트 시작 ===');
 
     await this.navigation.clickTextButton(page, '시작하기');
@@ -58,7 +54,7 @@ export class TestServiceImpl implements TestService {
     await this.logger.log(page, '=== 다시하기 테스트 완료 ===');
   }
 
-  private async selectRandomListItem(page: Page): Promise<void> {
+  private async selectRandomListItem(page: Page) {
     const items = await page.locator('ul li:not(:has-text("선택"))').all();
     if (items.length > 0) {
       const randomIndex = Math.floor(Math.random() * items.length);
@@ -66,10 +62,7 @@ export class TestServiceImpl implements TestService {
     }
   }
 
-  private async clickNavigationButtons(
-    page: Page,
-    subject: string
-  ): Promise<void> {
+  private async clickNavigationButtons(page: Page, subject: string) {
     const buttons = page.locator(this.config.SELECTORS.NAVIGATION_BUTTONS);
     let clickCount = 0;
 
@@ -89,7 +82,7 @@ export class TestServiceImpl implements TestService {
     }
   }
 
-  private async clickStartLink(page: Page): Promise<void> {
+  private async clickStartLink(page: Page) {
     await this.navigation.clickElementWithRetry(
       page,
       this.config.SELECTORS.START_LINK,
@@ -97,10 +90,7 @@ export class TestServiceImpl implements TestService {
     );
   }
 
-  private async clickMainNavigationButtons(
-    page: Page,
-    context = ''
-  ): Promise<void> {
+  private async clickMainNavigationButtons(page: Page, context = '') {
     let clickCount = 0;
 
     while (true) {

@@ -13,14 +13,14 @@ export class ServiceFactory {
 
   private constructor() {}
 
-  static getInstance(): ServiceFactory {
+  static getInstance() {
     if (!ServiceFactory.instance) {
       ServiceFactory.instance = new ServiceFactory();
     }
     return ServiceFactory.instance;
   }
 
-  createAutomationRunner(): AutomationRunner {
+  createAutomationRunner() {
     // 기본 유틸리티 서비스들
     const logger = new LoggerService();
     const screenshotService = new ScreenshotServiceImpl();

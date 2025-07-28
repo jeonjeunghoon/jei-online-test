@@ -6,7 +6,7 @@ import { ServiceFactory } from '@/core/factory.js';
 // 경로 별칭 자동 등록
 autoRegisterPaths();
 
-async function main(): Promise<void> {
+async function main() {
   const factory = ServiceFactory.getInstance();
   const automationRunner = factory.createAutomationRunner();
 

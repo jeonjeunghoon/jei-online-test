@@ -9,7 +9,7 @@ export class JeiService {
     private readonly logger: Logger
   ) {}
 
-  async findAndClickJeiCard(page: Page): Promise<void> {
+  async findAndClickJeiCard(page: Page) {
     const cardSelectors = [
       { selector: this.config.SELECTORS.JEI_CARD_TEXT, method: '텍스트' },
       { selector: this.config.SELECTORS.JEI_CARD_CLASS, method: '클래스' },
@@ -42,7 +42,7 @@ export class JeiService {
     throw new Error('카드를 찾을 수 없음');
   }
 
-  async clickJeiCard(page: Page): Promise<void> {
+  async clickJeiCard(page: Page) {
     await this.logger.log(page, '=== 국어 완료 후 추가 로직 시작 ===');
 
     await page.evaluate(() => {
@@ -59,7 +59,7 @@ export class JeiService {
     await this.findAndClickJeiCard(page);
   }
 
-  async clickConfirmAndWait(page: Page): Promise<void> {
+  async clickConfirmAndWait(page: Page) {
     await this.logger.log(page, '확인 버튼 찾기 시도...');
     await this.navigation.clickElementWithRetry(
       page,
@@ -86,7 +86,7 @@ export class JeiService {
     await this.logger.log(page, '페이지 로딩 대기 완료');
   }
 
-  async findAndClickResetButton(page: Page): Promise<void> {
+  async findAndClickResetButton(page: Page) {
     const resetSelectors = [
       'button.absolute.bottom-0.right-10.w-15.h-15.rounded-full.bg-\\[\\#DCE0E1\\].flex.justify-center.items-center.opacity-70.hover\\:cursor-pointer.block',
       'button[style*="box-shadow"]:has(svg)',
@@ -129,7 +129,7 @@ export class JeiService {
     await this.logger.log(page, '리셋 버튼 클릭 시도 완료');
   }
 
-  async clickResetButton(page: Page): Promise<void> {
+  async clickResetButton(page: Page) {
     await this.logger.log(page, '리셋 버튼 찾기 시도...');
     await this.navigation.waitForElement(
       page,
@@ -138,7 +138,7 @@ export class JeiService {
     await this.findAndClickResetButton(page);
   }
 
-  async clickRetryButton(page: Page): Promise<void> {
+  async clickRetryButton(page: Page) {
     await this.logger.log(page, '다시 하기 버튼 찾기 시도...');
     await this.navigation.waitForElement(
       page,

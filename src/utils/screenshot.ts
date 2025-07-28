@@ -5,7 +5,7 @@ import type { Page } from 'playwright';
 import type { ScreenshotService } from '@/types/index.js';
 
 export class ScreenshotServiceImpl implements ScreenshotService {
-  async saveErrorScreenshot(page: Page, error: Error): Promise<void> {
+  async saveErrorScreenshot(page: Page, error: Error) {
     try {
       const now = new Date();
       const today = now.toISOString().split('T')[0] ?? 'unknown-date'; // YYYY-MM-DD

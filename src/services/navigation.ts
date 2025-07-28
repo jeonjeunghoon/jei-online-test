@@ -11,7 +11,7 @@ export class NavigationServiceImpl implements NavigationService {
     page: Page,
     selector: string,
     timeout = this.config.TIMEOUTS.ELEMENT_WAIT
-  ): Promise<boolean> {
+  ) {
     try {
       await page.locator(selector).waitFor({ timeout });
       return true;
@@ -20,11 +20,7 @@ export class NavigationServiceImpl implements NavigationService {
     }
   }
 
-  async clickElementWithRetry(
-    page: Page,
-    selector: string,
-    context = ''
-  ): Promise<boolean> {
+  async clickElementWithRetry(page: Page, selector: string, context = '') {
     const element = page.locator(selector);
     const exists = await element.count();
 
@@ -38,11 +34,11 @@ export class NavigationServiceImpl implements NavigationService {
     return false;
   }
 
-  async clickTextButton(page: Page, text: string): Promise<void> {
+  async clickTextButton(page: Page, text: string) {
     await page.getByText(text, { exact: false }).click();
   }
 
-  async navigateToUrl(page: Page, url: string): Promise<void> {
+  async navigateToUrl(page: Page, url: string) {
     await page.goto(url, { timeout: this.config.TIMEOUTS.PAGE_LOAD });
   }
 }

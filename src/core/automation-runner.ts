@@ -25,7 +25,7 @@ export class AutomationRunnerImpl implements AutomationRunner {
     private readonly screenshotService: ScreenshotService
   ) {}
 
-  async run(): Promise<void> {
+  async run() {
     let error: Error | null = null;
 
     try {
@@ -54,14 +54,14 @@ export class AutomationRunnerImpl implements AutomationRunner {
     }
   }
 
-  private async initializeBrowser(): Promise<void> {
+  private async initializeBrowser() {
     this.browser = await chromium.launch({
       headless: this.config.VIEW_TEST_MODE ? false : true,
     });
     this.page = await this.browser.newPage();
   }
 
-  private async runAllTests(): Promise<void> {
+  private async runAllTests() {
     if (!this.page) throw new Error('페이지가 초기화되지 않음');
 
     for (let i = 0; i < this.config.SUBJECTS.length; i++) {
@@ -85,7 +85,7 @@ export class AutomationRunnerImpl implements AutomationRunner {
     }
   }
 
-  private async runJeiRetryFlow(): Promise<void> {
+  private async runJeiRetryFlow() {
     if (!this.page) throw new Error('페이지가 초기화되지 않음');
 
     await this.navigationService.navigateToUrl(
@@ -106,7 +106,7 @@ export class AutomationRunnerImpl implements AutomationRunner {
     await this.authService.performLogout(this.page);
   }
 
-  private async cleanup(error: Error | null): Promise<void> {
+  private async cleanup(error: Error | null) {
     const now = new Date().toISOString();
     const message = error
       ? `점검 실패: ${error.message} (${now})`

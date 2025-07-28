@@ -13,7 +13,7 @@ export class AuthServiceImpl implements AuthService {
     private readonly logger: Logger
   ) {}
 
-  async performLogin(page: Page): Promise<void> {
+  async performLogin(page: Page) {
     await this.navigation.navigateToUrl(page, this.config.URLS.MAIN);
 
     const buttons = page.locator('[class*="cursor-pointer"]');
@@ -43,7 +43,7 @@ export class AuthServiceImpl implements AuthService {
     await this.navigation.clickTextButton(page, '확인');
   }
 
-  async performLogout(page: Page): Promise<void> {
+  async performLogout(page: Page) {
     await this.logger.log(page, '로그아웃 시작...');
 
     await this.navigation.clickElementWithRetry(
